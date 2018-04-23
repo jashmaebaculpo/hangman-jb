@@ -5,10 +5,11 @@ var alphabet = ['A', 'B', 'C', 'D', 'E', 'F', 'G', 'H',
                 'I', 'J', 'K', 'L', 'M', 'N', 'O', 'P', 
                 'Q', 'R', 'S', 'T', 'U', 'V', 'W', 'X', 'Y', 'Z'];
 
-var words = [{ word: "citrine", hint: "It's a yellow stone" }, 
-             { word: "fluorite", hint: "It's a purple, blue and green stone" }, 
-             { word: "tiger", hint: "It's the eye of the ....." },
-             {word: "amethyst", hint: "It's a purple stone"}];
+var words = [{ word: "citrine", hint: "It's a yellow stone"}, 
+             { word: "fluorite", hint: "It's a purple, blue and green stone"}, 
+             { word: "tiger", hint: "It's the eye of the ....."},
+             { word: "amethyst", hint: "It's a purple stone"},
+             { word: "jade", hint: "It's a green stone"}];
 
 var selectedWord = "";
 var selectedHint = "";
@@ -24,6 +25,15 @@ window.onload = startGame();
 $("#letters").on("click", ".letter", function(){
     checkLetter($(this).attr("id"));
     disableButton($(this));
+});
+
+$(".giveHints").on("click", function()
+{
+   $("#hint").append("<span class = 'hint'> Hint: " + selectedHint + "</span>");
+   remainingGuesses--;
+   updateMan();
+   updateBoard();
+   disableButton($(this));
 });
 
 // Reload page when clicking on the replay button
@@ -43,6 +53,7 @@ function startGame() {
     // Fill up the current guess word with underscores and set the board
     initBoard();
     updateBoard();
+    
 }
 
 // Selects a word randomly from the array of available words
@@ -67,6 +78,7 @@ function initBoard() {
         board.push("_");
     }
     
+    
 }
 
 
@@ -79,30 +91,6 @@ function updateBoard() {
     }
     
     $("#word").append("<br />");
-    $("#hint").onclick = hint(word);
-}
-
-function hint(selectedWord)
-{
-    if(selectedWord == "amethyst")
-    {
-        alert("It's a purple stone");
-    }
-    
-    if(selectedWord == "tiger")
-    {
-        alert("It's the eye of the .....");
-    }
-    
-    if(selectedWord == "fluorite")
-    {
-        alert("It's a purple, blue and green stone");
-    }
-    
-    if(selectedWord == "citrine")
-    {
-        alert("It's a yellow stone");
-    }
 }
 
 // Update the current word then calls for a board update

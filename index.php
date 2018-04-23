@@ -33,11 +33,10 @@
                 <button class="replayBtn btn btn-warning">Play Again</button>
             </div>
             
-            <div id="hint">
-                <button onclick = "hint(selectedWord)"> Need a hint? Click Me! </button>
-                
+            <div id = "hint">
+                <button class = "giveHints"> Need a hint? Click Me! </button>
             </div>
-
+            
             
             <div id="man">
                 <img src="img/stick_0.png" class="manImg" id="hangImg">
